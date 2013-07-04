@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.creditease.ynd.mapper.SysEnumMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.creditease.ynd.entity.SysEnum" >
+	<result column="id" property="id"/>
+	<result column="version" property="version"/>
+	<result column="enName" property="enName"/>
+	<result column="displayRef" property="displayRef"/>
+	<result column="description" property="description"/>
+	<result column="enumerationType" property="enumerationType"/>
+	<result column="creator" property="creator"/>
+</resultMap>
+       
+<!-- sys_enum table all fields -->
+<sql id="Base_Column_List" >
+	 id,version,enName,displayRef,description,enumerationType,creator
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="version != null" >
+	    and version =  #{version}
+	</if>
+	 	<if test="enName != null and enName != ''" >
+	    and enName =  #{enName}
+	</if>
+	 	<if test="displayRef != null and displayRef != ''" >
+	    and displayRef =  #{displayRef}
+	</if>
+	 	<if test="description != null and description != ''" >
+	    and description =  #{description}
+	</if>
+	<if test="enumerationType != null" >
+	    and enumerationType =  #{enumerationType}
+	</if>
+	<if test="creator != null" >
+	    and creator =  #{creator}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sys_enum(id,version,enName,displayRef,description,enumerationType,creator)
+ values(#{id},#{version},#{enName},#{displayRef},#{description},#{enumerationType},#{creator})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update sys_enum set version=#{version},enName=#{enName},displayRef=#{displayRef},description=#{description},enumerationType=#{enumerationType},creator=#{creator} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_enum set 
+	<trim  suffixOverrides="," >
+	<if test="version != null  ">
+		version=#{version},
+	</if>
+	<if test="enName != null  and enName != '' ">
+		enName=#{enName},
+	</if>
+	<if test="displayRef != null  and displayRef != '' ">
+		displayRef=#{displayRef},
+	</if>
+	<if test="description != null  and description != '' ">
+		description=#{description},
+	</if>
+	<if test="enumerationType != null  ">
+		enumerationType=#{enumerationType},
+	</if>
+	<if test="creator != null  ">
+		creator=#{creator},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_enum where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 字典类型 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_enum where id = #{id}
+</select>
+
+<!-- 字典类型 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_enum 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询字典类型列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_enum 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/automation/webframe/mapper/xml/SiteMainMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SiteTypeMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SiteColumnMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SiteScoreMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SysMenuMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SysUserMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SysRoleMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SysRoleRelMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/SysMenuBtnMapper.xml" />
+		<mapper resource="com/automation/webframe/mapper/xml/WebPageMapper.xml" />
+	</mappers>
+</configuration>

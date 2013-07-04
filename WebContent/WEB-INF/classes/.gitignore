@@ -1,0 +1,14 @@
+/application.properties
+/applicationContext.xml
+/application_development.properties
+/application_functional.properties
+/application_test.properties
+/automation.properties
+/com
+/data
+/freemarker.properties
+/log4j.properties
+/mybatis-config.xml
+/spring-mvc.xml
+/sysconfig.properties
+/urls.properties
